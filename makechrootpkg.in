@@ -257,7 +257,7 @@ download_sources() {
 	# Ensure sources are downloaded
 	sudo -u "$makepkg_user" --preserve-env=GNUPGHOME \
 		env SRCDEST="$SRCDEST" BUILDDIR="$WORKDIR" \
-		makepkg --config="$copydir/etc/makepkg.conf" --verifysource -o "${verifysource_args[@]}" ||
+		makepkg -A --config="$copydir/etc/makepkg.conf" --verifysource -o "${verifysource_args[@]}" ||
 		die "Could not download sources."
 }
 
