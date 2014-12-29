@@ -230,7 +230,9 @@ _chrootbuild() {
 	# use "$" in arguments to commands with "sudo -i".  ${foo} or
 	# ${1} is OK, but $foo or $1 isn't.
 	# https://bugzilla.sudo.ws/show_bug.cgi?id=765
-	sudo --preserve-env=SOURCE_DATE_EPOCH -iu builduser bash -c 'cd /startdir; makepkg "$@"' -bash "$@"
+	mkdir /build/.distcc
+	chown builduser /build/.distcc
+	sudo --preserve-env=SOURCE_DATE_EPOCH -iu builduser DISTCC_IO_TIMEOUT=1200 DISTCC_DIR='/build/.distcc' bash -c 'cd /startdir; makepkg "$@"' -bash "$@"
 	ret=$?
 	case $ret in
 		0|14)
