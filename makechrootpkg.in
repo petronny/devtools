@@ -15,7 +15,7 @@ m4_include(lib/archroot.sh)
 
 shopt -s nullglob
 
-default_makepkg_args=(--syncdeps --noconfirm --log --holdver --skipinteg)
+default_makepkg_args=(--syncdeps --noconfirm --holdver --skipinteg)
 makepkg_args=("${default_makepkg_args[@]}")
 verifysource_args=()
 chrootdir=
